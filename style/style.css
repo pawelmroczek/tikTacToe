@@ -1,0 +1,39 @@
+.game__container{
+    margin: 20px auto;
+    background-color: black;
+    width: 600px;
+    height: 70%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3,200px);
+    gap: 4px;
+}
+
+.game__header{
+    color: white;
+    background-color: black;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.tiktoe__place{
+    height: 200px;
+    background:white;
+    font-size: 150px;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+}
+
+.tiktoe__place:hover{
+    background-color: rgb(222, 221, 221);
+    color: white;
+}
+
+.game__end{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 50px;
+    background-color: black;
+    color: white;
+}
