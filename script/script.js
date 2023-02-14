@@ -1,9 +1,17 @@
 const places = document.querySelectorAll(".tiktoe__place");
 
+const points = document.querySelector(".js-game__points");
+
+let Xpoints =0;
+let Ypoints = 0;
+
+
 let placesCheckArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 let shape = "O";
 let GameEnd = false;
+
+
 
 
 const toggleShape = (shape) => {
@@ -13,6 +21,14 @@ const toggleShape = (shape) => {
     return "X";
   }
 };
+
+const countPoints = (shape) =>{
+    if (shape == "X") {
+        Xpoints++;
+      } else {
+        Ypoints++;
+      }
+}
 
 const checkWin =(shape,placesCheckArray,index)=>{
     if(index%3==1){
@@ -90,6 +106,10 @@ const resetGame = (placesCheckArray,places)=>{
     GameEnd=false;
 }
 
+const renderPoints = (Xpoints,Ypoints) =>{
+    document.querySelector(".js-game__points").innerHTML=`POINTS: X <strong>${Xpoints}</strong> | Y <strong>${Ypoints}</strong>` 
+}
+
 const gameReset = document.querySelector(".js-game__reset");
 gameReset.addEventListener("click",()=>{
     resetGame(placesCheckArray,places);
@@ -101,14 +121,17 @@ places.forEach((place, index) => {
       place.innerText = shape;
       placesCheckArray[index] = shape;
       if(draw(placesCheckArray)){
-        document.querySelector(".game__end").innerText= "DRAW";
+        document.querySelector(".game__end").innerHTML= "DRAW" ;
       }
       if(checkWin(shape,placesCheckArray,index)){
+        countPoints(shape);
         document.querySelector(".game__end").innerText= `${shape} WIN`;
         GameEnd=true;
       }
-     
       shape = toggleShape(shape);
+      renderPoints(Xpoints,Ypoints);
     }
   });
 });
+
+renderPoints(Xpoints,Ypoints);
